@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#10212e">
-<title>BACKPACKER — Xbox 3D-Test</title>
+<title>BACKPACKER — Xbox Grafiktest 0.2</title>
 <style>
 :root{color-scheme:dark;font-family:system-ui,-apple-system,Segoe UI,sans-serif}*{box-sizing:border-box}body{margin:0;background:#0e1822;color:#fff;overflow:hidden}#game{width:100vw;height:100dvh;display:block;touch-action:none;outline:0}#hud{position:fixed;inset:0;pointer-events:none}#title{position:absolute;top:21px;left:24px;display:flex;flex-direction:column;gap:3px;text-shadow:0 1px 4px #0009}#title strong{font-size:19px;letter-spacing:.16em;font-weight:800}#title small{font-size:11px;letter-spacing:.1em;color:#dfecf5}.panel{background:#0b2233c9;border:1px solid #adc4d533;backdrop-filter:blur(8px);box-shadow:0 4px 28px #0002;border-radius:14px}#stats{position:absolute;top:20px;right:22px;padding:12px 15px;min-width:170px;font-variant-numeric:tabular-nums;line-height:1.55;font-size:12px}#stats strong{color:#abefd4}#controls{position:absolute;bottom:20px;left:20px;padding:12px 16px;font-size:12px;max-width:600px;line-height:1.7}#controls b{color:#b3f1d1}#message{position:absolute;bottom:20px;right:20px;padding:12px 16px;font-size:12px;text-align:right;max-width:340px}#marker{position:absolute;top:50%;left:50%;width:6px;height:6px;border:1px solid #fff9;border-radius:50%;transform:translate(-50%,-50%)}#overlay{position:fixed;inset:0;background:linear-gradient(120deg,#0b2538ed,#153b45ef);display:flex;align-items:center;justify-content:center;padding:20px;z-index:5}#intro{max-width:630px;padding:30px 32px;background:#071927d9;border:1px solid #ffffff24;border-radius:22px;box-shadow:0 16px 70px #0007}h1{font-size:clamp(28px,5vw,47px);margin:0 0 6px;letter-spacing:.08em}p{line-height:1.6;color:#d1e0e8}#intro small{color:#a9c2cc}button{border:0;border-radius:12px;padding:13px 22px;background:#99e1c6;color:#11282b;font:700 15px system-ui;cursor:pointer;pointer-events:auto}button:hover{background:#c1ffdf}#graphics{position:fixed;top:123px;right:22px;z-index:3;pointer-events:auto;background:#143346d8;color:white;border:1px solid #ffffff33;font-size:12px;padding:9px 13px}#err{position:fixed;inset:0;background:#08121e;color:#ffd6cf;display:none;align-items:center;justify-content:center;padding:25px;white-space:pre-wrap;z-index:20}#touch{display:none}#stick,#lookstick{touch-action:none}@media(max-width:700px){#title{top:10px;left:12px}#title strong{font-size:14px}#stats{top:8px;right:8px;padding:7px 8px;font-size:10px;min-width:128px}#graphics{top:98px;right:8px}#controls{bottom:6px;left:6px;max-width:62vw;font-size:9px;padding:7px}#message{bottom:6px;right:6px;max-width:34vw;font-size:9px;padding:7px}#intro{padding:22px}#touch{display:block}#stick,#lookstick{position:fixed;bottom:70px;width:90px;height:90px;border-radius:50%;background:#a9d5dd30;border:1px solid #ffffff64;pointer-events:auto}#stick{left:13px}#lookstick{right:13px}#stick:after,#lookstick:after{content:' ';position:absolute;left:30px;top:30px;width:30px;height:30px;border-radius:50%;background:#d1eced88}#jump{position:fixed;right:33px;bottom:175px;font-size:11px;padding:10px 12px}}
 </style>
@@ -12,14 +12,14 @@
 <body>
 <canvas id="game" tabindex="0" aria-label="3D-Reisewelt"></canvas>
 <div id="hud">
- <div id="title"><strong>BACKPACKER</strong><small>3D-GRAFIKTEST · TESTLANDSCHAFT</small></div>
+ <div id="title"><strong>BACKPACKER</strong><small>GRAFIKTEST V0.2 · VERBESSERTE TESTLANDSCHAFT</small></div>
  <div class="panel" id="stats">FPS <strong id="fps">–</strong><br>Grafik <strong id="quality">Mittel</strong><br>Renderer <strong id="renderer">–</strong><br>Controller <strong id="pad">Nicht erkannt</strong></div>
  <div class="panel" id="controls">🎮 <b>Links:</b> Laufen · <b>Rechts:</b> Kamera · <b>RB:</b> Sprint · <b>A:</b> Springen · <b>Y:</b> Grafik wechseln<br>⌨️ <b>WASD:</b> Laufen · <b>Maus ziehen:</b> Kamera · <b>Shift:</b> Sprint · <b>Leertaste:</b> Springen · <b>Q:</b> Grafik</div>
- <div class="panel" id="message">Prozedurale Demo-Landschaft, noch keine echten Geodaten.</div>
+ <div class="panel" id="message">Verbesserte prozedurale Landschaft · noch keine echten Geodaten.</div>
  <div id="touch"><div id="stick"></div><div id="lookstick"></div><button id="jump" aria-label="Springen">Springen</button></div>
 </div>
 <button id="graphics" type="button">Grafik: Mittel</button>
-<div id="overlay"><div id="intro"><small>TECHNISCHER PROTOTYP · V0.1</small><h1>BACKPACKER</h1><p>Erkunde eine kleine 3D-Testlandschaft mit Rucksack, Wanderweg, See, Bäumen und Aussichtspunkt. Teste die Grafik und die Steuerung auf deiner Xbox Series X.</p><p><b>Wichtig:</b> Diese Geländeform ist frei erzeugt, keine Abbildung eines realen Ortes. Echte geografische Daten kommen erst in einer späteren Version.</p><p>Drücke nach dem Start gegebenenfalls eine Controllertaste. Xbox Edge muss eventuell in den Spielsteuerungsmodus wechseln.</p><button id="start">Testwelt betreten</button><p><small>Keine Anmeldung · Kein Account · Kein Spielstand · Babylon.js wird von einem öffentlichen CDN geladen.</small></p></div></div>
+<div id="overlay"><div id="intro"><small>VISUELLER PROTOTYP · V0.2</small><h1>BACKPACKER</h1><p>Erkunde eine aufgewertete 3D-Testlandschaft mit texturiertem Boden, unterschiedlicher Vegetation, Lichtstimmung und verbesserter Kameraführung. Vergleiche die drei Grafikstufen auf der Xbox Series X.</p><p><b>Wichtig:</b> Diese Geländeform ist frei erzeugt, keine Abbildung eines realen Ortes. Echte geografische Daten kommen erst in einer späteren Version.</p><p>Drücke nach dem Start gegebenenfalls eine Controllertaste. Xbox Edge muss eventuell in den Spielsteuerungsmodus wechseln.</p><button id="start">Testwelt betreten</button><p><small>Keine Anmeldung · Kein Account · Kein Spielstand · Babylon.js wird von einem öffentlichen CDN geladen.</small></p></div></div>
 <div id="err"></div>
 <script src="https://cdn.babylonjs.com/babylon.js"></script>
 <script>
@@ -32,28 +32,59 @@ try{
 const canvas=$('game');
 const engine=new BABYLON.Engine(canvas,true,{preserveDrawingBuffer:false,stencil:true,adaptToDeviceRatio:false,disableWebGL2Support:false});
 const scene=new BABYLON.Scene(engine);
-scene.clearColor=new BABYLON.Color4(.70,.83,.88,1);
-scene.fogMode=BABYLON.Scene.FOGMODE_EXP2;scene.fogDensity=.00145;scene.fogColor=new BABYLON.Color3(.69,.82,.86);
+scene.clearColor=new BABYLON.Color4(.56,.74,.86,1);
+scene.fogMode=BABYLON.Scene.FOGMODE_EXP2;scene.fogDensity=.0010;scene.fogColor=new BABYLON.Color3(.66,.78,.81);
+scene.imageProcessingConfiguration.toneMappingEnabled=true;scene.imageProcessingConfiguration.toneMappingType=BABYLON.ImageProcessingConfiguration.TONEMAPPING_ACES;scene.imageProcessingConfiguration.exposure=1.04;scene.imageProcessingConfiguration.contrast=1.13;
 const v=(x,y,z)=>new BABYLON.Vector3(x,y,z);
 const col=(r,g,b)=>new BABYLON.Color3(r,g,b);
 const makeMat=(name,r,g,b,metal=0,rough=1)=>{let m=new BABYLON.PBRMaterial(name,scene);m.albedoColor=col(r,g,b);m.metallic=metal;m.roughness=rough;return m;};
-const grass=makeMat('Gras und Bergwiese',.29,.42,.23);
-const pathmat=makeMat('Sandiger Wanderweg',.65,.55,.38);
-const rock=makeMat('Fels',.39,.41,.39);
+// Generate textures locally: no paid service, external texture host or third-party asset license.
+let textureSeed=6297;function trand(){textureSeed=(Math.imul(textureSeed,1664525)+1013904223)>>>0;return textureSeed/4294967296;}
+function texture(name,kind){
+ const S=512,t=new BABYLON.DynamicTexture(name,{width:S,height:S},scene,false,BABYLON.Texture.TRILINEAR_SAMPLINGMODE); const ctx=t.getContext();const im=ctx.createImageData(S,S),data=im.data;
+ for(let y=0;y<S;y++)for(let x=0;x<S;x++){
+   const i=(y*S+x)*4,cloud=24*Math.sin(x/42+y/73)+13*Math.sin(x/17-y/28),grain=(trand()-.5)*52;
+   let r,g,b;
+   if(kind==='grass'){let c=cloud+grain;r=99+c*.54;g=117+c*.73;b=66+c*.46;}
+   else if(kind==='path'){let c=cloud*.55+grain;r=151+c;g=127+c*.81;b=92+c*.63;}
+   else if(kind==='wood'){let c=12*Math.sin(x/9)+18*Math.sin(x/29)+grain*.28;r=140+c;g=94+c*.73;b=58+c*.52;}
+   else if(kind==='stone'){let c=cloud*.49+grain*.6;r=118+c;g=117+c;b=105+c*.88;}
+   else {let c=cloud*.49+grain;r=56+c*.3;g=100+c*.7;b=49+c*.42;}
+   data[i]=Math.max(0,Math.min(255,r));data[i+1]=Math.max(0,Math.min(255,g));data[i+2]=Math.max(0,Math.min(255,b));data[i+3]=255;
+ }
+ ctx.putImageData(im,0,0);
+ if(kind==='grass'){
+  for(let i=0;i<6500;i++){let x=trand()*S,y=trand()*S,l=1+trand()*7;ctx.strokeStyle=trand()<.5?'rgba(202,209,114,.27)':'rgba(40,81,32,.31)';ctx.lineWidth=.45+trand()*.8;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+(trand()-.5)*4,y-l);ctx.stroke();}
+ }else if(kind==='path'){
+  for(let i=0;i<1150;i++){let x=trand()*S,y=trand()*S;ctx.fillStyle=trand()<.5?'rgba(228,210,170,.29)':'rgba(65,60,47,.32)';ctx.beginPath();ctx.ellipse(x,y,trand()*2.8+.3,trand()*1.2+.2,0,0,Math.PI*2);ctx.fill();}
+ }else if(kind==='wood'){
+  for(let i=0;i<135;i++){let x=trand()*S;ctx.strokeStyle='rgba(44,25,19,.12)';ctx.lineWidth=1+trand()*2;ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x+Math.sin(x)*12,S);ctx.stroke();}
+ }
+ t.update();t.wrapU=t.wrapV=BABYLON.Texture.WRAP_ADDRESSMODE;return t;
+}
+const grassTex=texture('Satte Wiese','grass'),pathTex=texture('Dirt trail','path'),woodTex=texture('Timber','wood'),rockTex=texture('Natural stone','stone');
+grassTex.uScale=1;grassTex.vScale=1;pathTex.uScale=1;pathTex.vScale=1;woodTex.uScale=2;woodTex.vScale=2;rockTex.uScale=2;rockTex.vScale=2;
+
+const grass=makeMat('Gras und Bergwiese',1,1,1);grass.albedoTexture=grassTex;
+const pathmat=makeMat('Sandiger Wanderweg',1,1,1);pathmat.albedoTexture=pathTex;
+const rock=makeMat('Fels',1,1,1);rock.albedoTexture=rockTex;
 const bark=makeMat('Baumstamm',.31,.20,.125);
 const leaves=[makeMat('Nadelbaum dunkel',.15,.30,.21),makeMat('Nadelbaum hell',.21,.38,.25),makeMat('Nadelbaum bläulich',.19,.31,.29)];
 const waterMat=makeMat('See',.18,.48,.57,.13,.19);waterMat.alpha=.82;
-const cabinWall=makeMat('Holzhütte',.55,.36,.19),roofMat=makeMat('Dach',.20,.27,.26),dark=makeMat('Dunkle Details',.15,.20,.19),shirt=makeMat('Jacke',.84,.46,.24),pants=makeMat('Hose',.23,.31,.34),skin=makeMat('Haut',.75,.55,.40),packMat=makeMat('Rucksack',.18,.34,.29);
-const hemi=new BABYLON.HemisphericLight('Himmelslicht',v(0,1,0),scene);hemi.intensity=.78;hemi.diffuse=col(.89,.94,1);hemi.groundColor=col(.29,.32,.22);
-const sun=new BABYLON.DirectionalLight('Sonne',v(-.6,-1,-.3),scene);sun.position=v(100,230,70);sun.intensity=1.75;sun.diffuse=col(1,.92,.78);
-const fx=(x,z)=>12*Math.sin(x/72)*Math.cos(z/77)+9*Math.sin((x+z)/59)+ 17*Math.exp(-((x-115)**2+(z+130)**2)/17000)+25*Math.exp(-((x+175)**2+(z-140)**2)/19000)- 10*Math.exp(-((x-40)**2+(z-40)**2)/4200);
+const cabinWall=makeMat('Holzhütte',1,1,1),roofMat=makeMat('Dach',.17,.23,.22),dark=makeMat('Dunkle Details',.12,.16,.17),shirt=makeMat('Jacke',.84,.36,.18),pants=makeMat('Hose',.18,.25,.29),skin=makeMat('Haut',.66,.43,.31),packMat=makeMat('Rucksack',.17,.29,.23);cabinWall.albedoTexture=woodTex;
+const hemi=new BABYLON.HemisphericLight('Himmelslicht',v(0,1,0),scene);hemi.intensity=.83;hemi.diffuse=col(.89,.94,1);hemi.groundColor=col(.29,.32,.22);
+const sun=new BABYLON.DirectionalLight('Sonne',v(-.6,-1,-.3),scene);sun.position=v(100,230,70);sun.intensity=2.15;sun.diffuse=col(1,.92,.78);
+const fx=(x,z)=>8*Math.sin(x/82)*Math.cos(z/96)+6*Math.sin((x+z)/86)+ 15*Math.exp(-((x-125)**2+(z+155)**2)/18000)+20*Math.exp(-((x+185)**2+(z-135)**2)/22000)- 11*Math.exp(-((x-55)**2+(z-45)**2)/2800)+1.4*Math.sin(x/10)*Math.cos(z/18);
 const height=(x,z)=>fx(x,z)-fx(0,0);
 const WIDTH=760,SEG=166,half=WIDTH/2;
-const vertices=[],normals=[],uv=[],indices=[];
-for(let iz=0;iz<=SEG;iz++){for(let ix=0;ix<=SEG;ix++){let x=(ix/SEG-.5)*WIDTH,z=(iz/SEG-.5)*WIDTH;vertices.push(x,height(x,z),z);uv.push(ix/12,iz/12);}}
+const vertices=[],normals=[],uv=[],indices=[],terrainColors=[];
+for(let iz=0;iz<=SEG;iz++){for(let ix=0;ix<=SEG;ix++){let x=(ix/SEG-.5)*WIDTH,z=(iz/SEG-.5)*WIDTH;const h=height(x,z);vertices.push(x,h,z);uv.push(x/19,z/19);
+ const slope=Math.hypot((height(x+2,z)-h)/2,(height(x,z+2)-h)/2);
+ const st=Math.min(.58,Math.max(0,(slope-.19)*.25)),peak=Math.min(.24,Math.max(0,(h-20)/72));
+ terrainColors.push(1-st*.27+peak*.25,1-st*.18+peak*.19,1-st*.28+peak*.29,1);}}
 for(let iz=0;iz<SEG;iz++)for(let ix=0;ix<SEG;ix++){let a=iz*(SEG+1)+ix,b=a+1,c=a+SEG+1,d=c+1;indices.push(a,c,b,b,c,d);}
 BABYLON.VertexData.ComputeNormals(vertices,indices,normals);
-const terrain=new BABYLON.Mesh('Gelände',scene);const vd=new BABYLON.VertexData();vd.positions=vertices;vd.indices=indices;vd.normals=normals;vd.uvs=uv;vd.applyToMesh(terrain);terrain.material=grass;terrain.receiveShadows=true;
+const terrain=new BABYLON.Mesh('Gelände',scene);const vd=new BABYLON.VertexData();vd.positions=vertices;vd.indices=indices;vd.normals=normals;vd.uvs=uv;vd.colors=terrainColors;vd.applyToMesh(terrain);terrain.material=grass;terrain.receiveShadows=true;
 // Meandering hillside trail, follows surface. Flat ribbon elevated just above terrain.
 const trailX=z=>13*Math.sin((z-30)/37)+4*Math.sin((z+70)/13);
 const trailPoints=[],trailWidth=5.1;
@@ -63,45 +94,68 @@ for(let i=0;i<trailPoints.length;i++){for(let side=0;side<2;side++){let p=trailP
 BABYLON.VertexData.ComputeNormals(trailVerts,trailIndices,trailNorm);
 let walkpath=new BABYLON.Mesh('Wanderpfad',scene),tv=new BABYLON.VertexData();tv.positions=trailVerts;tv.normals=trailNorm;tv.indices=trailIndices;tv.uvs=trailUV;tv.applyToMesh(walkpath);walkpath.material=pathmat;
 const treeTrunk=BABYLON.MeshBuilder.CreateCylinder('Tree trunk source',{height:5,diameterTop:.25,diameterBottom:.8,tessellation:6},scene);treeTrunk.material=bark;treeTrunk.isVisible=false;
-const treeTop=BABYLON.MeshBuilder.CreateCylinder('Tree crown source',{height:10,diameterTop:0,diameterBottom:6,tessellation:7},scene);treeTop.material=leaves[0];treeTop.isVisible=false;
-const treeTop2=BABYLON.MeshBuilder.CreateCylinder('Second crown source',{height:9,diameterTop:0,diameterBottom:5.8,tessellation:7},scene);treeTop2.material=leaves[1];treeTop2.isVisible=false;
-const treeTop3=BABYLON.MeshBuilder.CreateCylinder('Third crown source',{height:10,diameterTop:0,diameterBottom:6.4,tessellation:7},scene);treeTop3.material=leaves[2];treeTop3.isVisible=false;
+const treeTop=BABYLON.MeshBuilder.CreateCylinder('Tree crown source',{height:8,diameterTop:.1,diameterBottom:5.5,tessellation:12},scene);treeTop.material=leaves[0];treeTop.isVisible=false;
+const treeTop2=BABYLON.MeshBuilder.CreateSphere('Deciduous crown source',{diameter:6,segments:12},scene);treeTop2.material=leaves[1];treeTop2.isVisible=false;
+const treeTop3=BABYLON.MeshBuilder.CreateSphere('Another crown source',{diameter:5.5,segments:12},scene);treeTop3.material=leaves[2];treeTop3.isVisible=false;
 let rng=314159;const rnd=()=>((rng=(Math.imul(rng,1664525)+1013904223)|0)>>>0)/4294967296;
 const allTrees=[];
-for(let i=0;i<380;i++){
+for(let i=0;i<450;i++){
  let x=(rnd()-.5)*720,z=(rnd()-.5)*720;
  if(Math.abs(x-trailX(z))<14||Math.hypot(x-45,z-20)<45||Math.hypot(x+40,z+125)<32)continue;
  const scale=.65+rnd()*.72;let ground=height(x,z);
  const trunk=treeTrunk.createInstance('Stamm '+i);trunk.position=v(x,ground+2.4*scale,z);trunk.scaling=v(scale,scale,scale);
- const leafSource=[treeTop,treeTop2,treeTop3][i%3];const crown=leafSource.createInstance('Krone '+i);crown.position=v(x,ground+8.2*scale,z);crown.scaling=v(scale,scale,scale);
+ const leafSource=[treeTop,treeTop2,treeTop3][i%3];const crown=leafSource.createInstance('Krone '+i);crown.position=v(x,ground+(i%3===0?7.1:7.6)*scale,z);crown.scaling=v((.82+rnd()*.3)*scale,(.8+rnd()*.45)*scale,(.83+rnd()*.35)*scale);
+ // A smaller second canopy breaks up repetitive, geometric silhouettes.
+ if(i%3===0){const second=treeTop.createInstance('Baumspitze '+i);second.position=v(x,ground+10.3*scale,z);second.scaling=v(scale*.68,scale*.57,scale*.68);allTrees.push({trunk:second,crown:second});} 
  allTrees.push({trunk,crown});
 }
 const stones=[];
-const stoneBase=BABYLON.MeshBuilder.CreateSphere('Stein source',{diameter:2,segments:5},scene);stoneBase.material=rock;stoneBase.isVisible=false;
-for(let i=0;i<125;i++){let x=(rnd()-.5)*680,z=(rnd()-.5)*680;if(Math.abs(x-trailX(z))<4)continue;let s=.3+rnd()*1.9;let mesh=stoneBase.createInstance('Stein'+i);mesh.position=v(x,height(x,z)+s*.33,z);mesh.scaling=v(s*1.8,s*.65,s*1.2);stones.push(mesh);}
+const stoneBase=BABYLON.MeshBuilder.CreateSphere('Stein source',{diameter:2,segments:8},scene);stoneBase.material=rock;stoneBase.isVisible=false;
+for(let i=0;i<190;i++){let x=(rnd()-.5)*680,z=(rnd()-.5)*680;if(Math.abs(x-trailX(z))<4)continue;let s=.3+rnd()*1.9;let mesh=stoneBase.createInstance('Stein'+i);mesh.position=v(x,height(x,z)+s*.33,z);mesh.scaling=v(s*1.8,s*.65,s*1.2);stones.push(mesh);}
 function box(name,w,h,d,mat,x,y,z,rot=0){let o=BABYLON.MeshBuilder.CreateBox(name,{width:w,height:h,depth:d},scene);o.material=mat;o.position=v(x,y,z);o.rotation.y=rot;return o;}
 function cabin(x,z){let y=height(x,z);box('Hütte',15,8,13,cabinWall,x,y+4,z);let roof1=box('Dachfläche 1',9.7,.5,15,roofMat,x-3.7,y+9.1,z);roof1.rotation.z=.43;let roof2=box('Dachfläche 2',9.7,.5,15,roofMat,x+3.7,y+9.1,z);roof2.rotation.z=-.43;box('Tür',2.3,4.4,.1,dark,x,y+2.2,z+6.55);box('Fenster',2.5,2.0,.11,waterMat,x-4.3,y+5,z+6.6);}
 cabin(-40,-123);
-const lake=BABYLON.MeshBuilder.CreateDisc('Kleiner See',{radius:47,tessellation:64},scene);lake.rotation.x=-Math.PI/2;lake.position=v(45,height(45,20)+.9,20);lake.scaling.y=.65;lake.material=waterMat;
+const lake=BABYLON.MeshBuilder.CreateDisc('Kleiner See',{radius:38,tessellation:96},scene);lake.rotation.x=-Math.PI/2;lake.position=v(55,height(55,45)+1.35,45);lake.scaling.y=.84;lake.material=waterMat;
+// Reeds and wildflowers use low-cost mesh instances and change the landscape silhouette.
+const grassBlade=BABYLON.MeshBuilder.CreateCylinder('Wildgras Quelle',{height:1.9,diameterTop:0,diameterBottom:.075,tessellation:3},scene);grassBlade.material=leaves[1];grassBlade.isVisible=false;
+const grassBlades=[];for(let i=0;i<1400;i++){const x=(rnd()-.5)*500,z=(rnd()-.5)*500;if(Math.abs(x-trailX(z))<3||Math.hypot(x-55,z-45)<39)continue;const cl=grassBlade.createInstance('Halm '+i);let sz=.45+rnd()*1.1;cl.position=v(x,height(x,z)+sz*.76,z);cl.scaling=v(sz,sz,sz);cl.rotation.z=(rnd()-.5)*.55;grassBlades.push(cl);}
+const flowerColors=[makeMat('Weiße Blüten',.92,.86,.63),makeMat('Gelbe Blüten',.95,.75,.19),makeMat('Violette Blüten',.43,.33,.57)];
+const flowerSrc=flowerColors.map((m,i)=>{let f=BABYLON.MeshBuilder.CreateSphere('Blumen-Kopf '+i,{diameter:.36,segments:6},scene);f.material=m;f.isVisible=false;return f;});
+const flowers=[];for(let i=0;i<310;i++){let x=(rnd()-.5)*350,z=(rnd()-.5)*350;if(Math.abs(x-trailX(z))<2.7)continue;let flower=flowerSrc[i%3].createInstance('Blume '+i);flower.position=v(x,height(x,z)+.45,z);flowers.push(flower);}
+
 // Little signpost next to the trail.
 const signY=height(10,20);box('Wegweiser Pfosten',.45,4,.45,bark,10,signY+2,20);box('Wegweiser Schild',4.8,.92,.4,cabinWall,11.7,signY+3.7,20);
 const char=new BABYLON.TransformNode('Backpacker',scene);char.position=v(0,height(0,0),-11);
 function part(name,kind,size,mat,pos,parent=char){let m;if(kind==='box'){m=BABYLON.MeshBuilder.CreateBox(name,{width:size[0],height:size[1],depth:size[2]},scene);}else{m=BABYLON.MeshBuilder.CreateSphere(name,{diameter:1,segments:10},scene);m.scaling=v(size[0],size[1],size[2]);}m.material=mat;m.parent=parent;m.position=v(...pos);return m;}
-part('Torso','box',[.9,1.45,.55],shirt,[0,1.55,0]);part('Kopf','sphere',[.62,.75,.62],skin,[0,2.65,0]);
-const armL=part('Linker Arm','box',[.26,.95,.30],shirt,[-.64,1.59,0]),armR=part('Rechter Arm','box',[.26,.95,.30],shirt,[.64,1.59,0]);
-const legL=part('Linkes Bein','box',[.34,1.05,.38],pants,[-.23,.53,0]),legR=part('Rechtes Bein','box',[.34,1.05,.38],pants,[.23,.53,0]);
-part('Rucksack','box',[1.07,1.35,.48],packMat,[0,1.7,.49]);part('Rucksack Tasche','box',[.76,.52,.30],packMat,[0,1.18,.80]);
-const camera=new BABYLON.FreeCamera('Third-Person-Kamera',v(0,6,10),scene);camera.minZ=.12;camera.maxZ=1900;camera.fov=.91;scene.activeCamera=camera;
+part('Torso','sphere',[.98,1.53,.7],shirt,[0,1.62,0]);part('Kopf','sphere',[.59,.76,.61],skin,[0,2.74,0]);
+const hair=makeMat('Haare',.16,.12,.10),boot=makeMat('Wanderstiefel',.13,.11,.09),metal=makeMat('Schnallen',.47,.49,.43,.2,.5);
+part('Haare','sphere',[.61,.34,.63],hair,[0,3.00,-.025]);
+part('Gurt links','box',[.12,1.1,.10],metal,[-.37,1.76,-.31]);part('Gurt rechts','box',[.12,1.1,.10],metal,[.37,1.76,-.31]);
+
+const armL=part('Linker Arm','sphere',[.26,1.04,.32],shirt,[-.63,1.6,0]),armR=part('Rechter Arm','sphere',[.26,1.04,.32],shirt,[.63,1.6,0]);
+const legL=part('Linkes Bein','sphere',[.35,1.13,.38],pants,[-.23,.59,0]),legR=part('Rechtes Bein','sphere',[.35,1.13,.38],pants,[.23,.59,0]);part('Schuh links','box',[.38,.25,.57],boot,[-.23,.13,-.14]);part('Schuh rechts','box',[.38,.25,.57],boot,[.23,.13,-.14]);
+part('Rucksack','sphere',[1.12,1.48,.70],packMat,[0,1.73,.50]);part('Rucksack Tasche','sphere',[.81,.53,.38],packMat,[0,1.12,.83]);
+// Atmospheric sky dome; keeps the camera view from becoming a flat cyan void.
+const skyTexture=new BABYLON.DynamicTexture('Himmel mit Dunst',{width:1024,height:512},scene,false);
+const sc=skyTexture.getContext();const skyImg=sc.createImageData(1024,512);
+for(let sy=0;sy<512;sy++)for(let sx=0;sx<1024;sx++){let t=sy/512,gradient=Math.pow(t,.9),i=(sy*1024+sx)*4;let haze=Math.max(0,1-Math.abs(t-.52)*7);let wisps=Math.sin(sx/42+sy/28)*Math.sin(sx/97-sy/41)*Math.exp(-(((t-.44)/.13)**2));skyImg.data[i]=65+gradient*134+haze*10+wisps*14;skyImg.data[i+1]=122+gradient*95+haze*11+wisps*13;skyImg.data[i+2]=183+gradient*37+haze*8+wisps*11;skyImg.data[i+3]=255;}
+sc.putImageData(skyImg,0,0);skyTexture.update();
+const skyMaterial=new BABYLON.StandardMaterial('Himmel',scene);skyMaterial.emissiveTexture=skyTexture;skyMaterial.disableLighting=true;skyMaterial.backFaceCulling=false;skyMaterial.fogEnabled=false;
+const skySphere=BABYLON.MeshBuilder.CreateSphere('Himmelskuppel',{diameter:1600,segments:32,sideOrientation:BABYLON.Mesh.BACKSIDE},scene);skySphere.material=skyMaterial;skySphere.isPickable=false;
+const shadow=new BABYLON.ShadowGenerator(1024,sun);shadow.usePercentageCloserFiltering=true;shadow.bias=.0015;shadow.normalBias=.022;
+for(const m of char.getChildMeshes()){shadow.addShadowCaster(m);}
+for(const name of ['Hütte','Dachfläche 1','Dachfläche 2']){let m=scene.getMeshByName(name);if(m)shadow.addShadowCaster(m);}const shadowCasters=shadow.getShadowMap().renderList.slice();
+const camera=new BABYLON.FreeCamera('Third-Person-Kamera',v(0,6,10),scene);camera.minZ=.15;camera.maxZ=1850;camera.fov=.89;scene.activeCamera=camera;
 let yaw=0,pitch=.26,cameraDistance=8.4,vertSpeed=0,grounded=true,walkTime=0,active=false,frame=0,fpsAvg=60,last=performance.now();
-let quality=1;const presets=[{name:'Niedrig',ratio:1.6,trees:85,rocks:30,dist:.0033},{name:'Mittel',ratio:1.15,trees:200,rocks:70,dist:.0020},{name:'Hoch',ratio:.85,trees:380,rocks:125,dist:.00135}];
-function setQuality(q){quality=(q+3)%3;const p=presets[quality];engine.setHardwareScalingLevel(p.ratio);scene.fogDensity=p.dist;allTrees.forEach((t,i)=>{let enabled=i<p.trees;t.trunk.setEnabled(enabled);t.crown.setEnabled(enabled)});stones.forEach((s,i)=>s.setEnabled(i<p.rocks));$('quality').textContent=p.name;$('graphics').textContent='Grafik: '+p.name;}
+let quality=1;const presets=[{name:'Niedrig',ratio:1.7,trees:95,rocks:35,dist:.0021,grass:180,flowers:45,shadow:false},{name:'Mittel',ratio:1.15,trees:265,rocks:100,dist:.0015,grass:750,flowers:150,shadow:false},{name:'Hoch',ratio:.85,trees:550,rocks:190,dist:.0010,grass:1400,flowers:310,shadow:true}];
+function setQuality(q){quality=(q+3)%3;const p=presets[quality];engine.setHardwareScalingLevel(p.ratio);scene.fogDensity=p.dist;allTrees.forEach((t,i)=>{let enabled=i<p.trees;t.trunk.setEnabled(enabled);t.crown.setEnabled(enabled)});stones.forEach((s,i)=>s.setEnabled(i<p.rocks));grassBlades.forEach((b,i)=>b.setEnabled(i<p.grass));flowers.forEach((f,i)=>f.setEnabled(i<p.flowers));shadow.getShadowMap().renderList=p.shadow?shadowCasters.slice():[];$('quality').textContent=p.name;$('graphics').textContent='Grafik: '+p.name;}
 $('graphics').onclick=()=>setQuality(quality+1);
 const keys={};addEventListener('keydown',e=>{keys[e.code]=true;if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Space'].includes(e.code))e.preventDefault();if(e.code==='KeyQ'&&!e.repeat)setQuality(quality+1);});addEventListener('keyup',e=>{keys[e.code]=false;});
 let mouseDown=false;canvas.addEventListener('pointerdown',e=>{mouseDown=true;canvas.setPointerCapture(e.pointerId);});canvas.addEventListener('pointerup',()=>mouseDown=false);canvas.addEventListener('pointermove',e=>{if(mouseDown&&active){yaw-=e.movementX*.005;pitch=Math.max(-.2,Math.min(.9,pitch+e.movementY*.003));}});
 const joy={move:[0,0],look:[0,0]};function installStick(id,target){let el=$(id),idActive=null,centerX=0,centerY=0;el.addEventListener('pointerdown',e=>{idActive=e.pointerId;el.setPointerCapture(e.pointerId);centerX=e.clientX;centerY=e.clientY;});el.addEventListener('pointermove',e=>{if(e.pointerId!==idActive)return;target[0]=Math.max(-1,Math.min(1,(e.clientX-centerX)/40));target[1]=Math.max(-1,Math.min(1,(e.clientY-centerY)/40));});function end(e){if(e.pointerId!==idActive)return;idActive=null;target[0]=target[1]=0;}el.addEventListener('pointerup',end);el.addEventListener('pointercancel',end);}
 installStick('stick',joy.move);installStick('lookstick',joy.look);
 let jumpTouch=false;$('jump').addEventListener('pointerdown',()=>jumpTouch=true);$('jump').addEventListener('pointerup',()=>jumpTouch=false);
-let yPrev=false,aPrev=false;function readPad(){const pads=navigator.getGamepads?.()||[];const p=Array.from(pads).find(g=>g&&g.connected);$('pad').textContent=p?'Erkannt':'Nicht erkannt';if(!p){yPrev=false;aPrev=false;return {mx:0,mz:0,lx:0,ly:0,jump:false,sprint:false};}const a=p.axes||[],b=p.buttons||[];const dz=x=>Math.abs(x)>.15?x:0;let y=!!b[3]?.pressed;if(y&&!yPrev)setQuality(quality+1);yPrev=y;let jump=!!b[0]?.pressed;if(jump&&!aPrev&&grounded)vertSpeed=7.1;aPrev=jump;return {mx:dz(a[0]||0),mz:dz(a[1]||0),lx:dz(a[2]||0),ly:dz(a[3]||0),jump,sprint:!!b[5]?.pressed};}
+let yPrev=false,aPrev=false;addEventListener('gamepadconnected',()=>{$('pad').textContent='Erkannt';});addEventListener('gamepaddisconnected',()=>{$('pad').textContent='Nicht erkannt';});function readPad(){const pads=navigator.getGamepads?.()||[];const p=Array.from(pads).find(g=>g&&g.connected);$('pad').textContent=p?'Erkannt':'Nicht erkannt';if(!p){yPrev=false;aPrev=false;return {mx:0,mz:0,lx:0,ly:0,jump:false,sprint:false};}const a=p.axes||[],b=p.buttons||[];const dz=x=>Math.abs(x)>.15?x:0;let y=!!b[3]?.pressed;if(y&&!yPrev)setQuality(quality+1);yPrev=y;let jump=!!b[0]?.pressed;if(jump&&!aPrev&&grounded)vertSpeed=7.1;aPrev=jump;return {mx:dz(a[0]||0),mz:dz(a[1]||0),lx:dz(a[2]||0),ly:dz(a[3]||0),jump,sprint:!!b[5]?.pressed};}
 const statusTimer=()=>{const x=char.position.x,z=char.position.z;let msg='Erkunde die Testlandschaft.';if(Math.hypot(x-10,z-20)<16)msg='Wegweiser erreicht · Weiter Richtung Berge';if(Math.hypot(x+40,z+123)<24)msg='Wanderhütte entdeckt';if(Math.hypot(x-45,z-20)<45)msg='Am See · Genieße die Aussicht';$('message').textContent=msg+' · Position '+x.toFixed(0)+' / '+z.toFixed(0)+' m';};
 scene.onBeforeRenderObservable.add(()=>{if(!active)return;const dt=Math.min(engine.getDeltaTime()/1000,.05);const p=readPad();
  let mx=p.mx+joy.move[0]+(keys.KeyD||keys.ArrowRight?1:0)-(keys.KeyA||keys.ArrowLeft?1:0),mz=p.mz+joy.move[1]+(keys.KeyS||keys.ArrowDown?1:0)-(keys.KeyW||keys.ArrowUp?1:0);
@@ -116,14 +170,20 @@ scene.onBeforeRenderObservable.add(()=>{if(!active)return;const dt=Math.min(engi
  else{char.position.y=g;}
  if(m>.1){let ang=Math.atan2(-move.x,-move.z);char.rotation.y+=(Math.atan2(Math.sin(ang-char.rotation.y),Math.cos(ang-char.rotation.y)))*Math.min(1,dt*10);}
  walkTime+=dt*(m>.1?speed*1.8:2);let swing=m>.1?Math.sin(walkTime)*.48:0;legL.rotation.x=swing;legR.rotation.x=-swing;armL.rotation.x=-swing*.55;armR.rotation.x=swing*.55;
- const ca=v(char.position.x+Math.sin(yaw)*cameraDistance*Math.cos(pitch),char.position.y+3.4+Math.sin(pitch)*cameraDistance,char.position.z+Math.cos(yaw)*cameraDistance*Math.cos(pitch));
- camera.position=BABYLON.Vector3.Lerp(camera.position,ca,Math.min(1,dt*7));camera.setTarget(v(char.position.x,char.position.y+1.65,char.position.z));
+ const lookTarget=v(char.position.x,char.position.y+1.9,char.position.z);
+ const ca=v(char.position.x+Math.sin(yaw)*cameraDistance*Math.cos(pitch),char.position.y+3.55+Math.sin(pitch)*cameraDistance,char.position.z+Math.cos(yaw)*cameraDistance*Math.cos(pitch));
+ // Essential camera-terrain collision: never allow the camera to sink under a hill.
+ ca.y=Math.max(ca.y,height(ca.x,ca.z)+2.5);
+ for(let j=2;j<=10;j++){const t=j/10,x=lookTarget.x+(ca.x-lookTarget.x)*t,z=lookTarget.z+(ca.z-lookTarget.z)*t,minimum=height(x,z)+1.25,current=lookTarget.y+(ca.y-lookTarget.y)*t;if(current<minimum)ca.y+=(minimum-current)/t;}
+ camera.position=BABYLON.Vector3.Lerp(camera.position,ca,Math.min(1,dt*8));
+ camera.position.y=Math.max(camera.position.y,height(camera.position.x,camera.position.z)+1.8);
+ camera.setTarget(lookTarget);skySphere.position.copyFrom(camera.position);
  if((frame++%15)===0){let now=performance.now();let instant=engine.getFps();fpsAvg=fpsAvg*.72+instant*.28;$('fps').textContent=Math.round(fpsAvg);statusTimer();}
 });
 engine.runRenderLoop(()=>{if(active)scene.render();});
 addEventListener('resize',()=>engine.resize());
 $('start').onclick=()=>{$('overlay').style.display='none';active=true;canvas.focus();setTimeout(()=>engine.resize(),100);};
-setQuality(1);$('renderer').textContent=engine.webGLVersion===2?'WebGL 2':'WebGL '+engine.webGLVersion;
+setQuality(2);$('renderer').textContent=engine.webGLVersion===2?'WebGL 2':'WebGL '+engine.webGLVersion;
 }catch(e){error('Fehler beim Initialisieren der 3D-Welt:\n'+(e.stack||e.message||e));}
 })();
 </script>
